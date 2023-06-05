@@ -20,6 +20,8 @@ except ImportError:
 from linchpin.exceptions import LinchpinError
 from linchpin.exceptions import ValidationError
 
+from linchpin.utils.next_subnet import next_subnet
+from linchpin.utils.ipaddr import ipaddr
 
 class DataParser(object):
 
@@ -82,7 +84,10 @@ class DataParser(object):
         # ansible supports OrderedDict in templates, which can't happen until
         # it stops supporting python 2.6
         c = self.parse_json_yaml(context, ordered=False)
-        t = Environment(loader=BaseLoader).from_string(str(template))
+        templ = Environment(loader=BaseLoader)
+        templ.filters["next_subnet"] = next_subnet
+        templ.filters["ipaddr"] = ipaddr
+        t = templ.from_string(str(template))
         return t.render(c)
 
 

@@ -32,10 +32,11 @@
     ignore_errors: yes
 
   - name: "undefine node"
-    virt:
-      name: "{{ libvirt_resource_name }}"
-      command: undefine
-      uri: "{{ instance[0]['uri'] | default('qemu:///system') }}"
+    command: "virsh -c {{ instance[0]['uri'] | default('qemu:///system') }} undefine --nvram --remove-all-storage {{ libvirt_resource_name }}"
+#    virt:
+#      name: "{{ libvirt_resource_name }}"
+#      command: undefine
+#      uri: "{{ instance[0]['uri'] | default('qemu:///system') }}"
     with_nested:
       - ["{{ res_def }}"]
     loop_control:
@@ -77,10 +78,11 @@
   ignore_errors: yes
 
 - name: "undefine node"
-  virt:
-    name: "{{ libvirt_resource_name }}{{ instance[2] }}{{ instance[1] }}"
-    command: undefine
-    uri: "{{ instance[0]['uri'] }}"
+  command: "virsh -c {{ instance[0]['uri'] | default('qemu:///system') }} undefine --nvram --remove-all-storage {{ libvirt_resource_name }}{{ instance[2] }}{{ instance[1] }}"
+#  virt:
+#    name: "{{ libvirt_resource_name }}{{ instance[2] }}{{ instance[1] }}"
+#    command: undefine
+#    uri: "{{ instance[0]['uri'] }}"
   with_nested:
     - ["{{ res_def }}"]
     - "{{ res_count }}"

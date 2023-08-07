@@ -23,6 +23,6 @@ gitdb>=0.6.4
 future
 openstacksdk>=0.37
 tqdm==4.36.1
-pyzmq==23.2.0
+pyzmq==24.0.1
 mock
 google-auth

@@ -26,7 +26,10 @@ RUN python3.9 -m pip install --upgrade pip \
                                click==8.0.4
 
 # Set the working directory
-WORKDIR /ansible
+WORKDIR /app
+
+COPY ./ /app/linchpin
+RUN pip install /app/linchpin
 
 
 # Set the default command for the container

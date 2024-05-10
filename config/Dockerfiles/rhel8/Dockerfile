@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 # Install Python 3 and necessary system packages
-RUN yum -y install python39 \
+RUN yum -y install python39 python3-libselinux \
     && yum -y module enable python39 \
     && yum clean all
 

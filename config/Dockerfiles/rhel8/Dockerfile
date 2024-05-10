@@ -7,9 +7,29 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 # Install Python 3 and necessary system packages
-RUN yum -y install python39 python3-libselinux \
+RUN yum -y install python39 \
+    python3-libselinux \
+    curl \
+    mlocate \
+    openssl-devel \
+    qemu-kvm \
+    libvirt-daemon-config-network \
+    libvirt-python \
+    libvirt-devel \
+    virt-install \
+    file \
+    openssh \
+    mkisofs \
+    libvirt-client \
+    net-tools \
+    git \
+    make \
+    libxslt-python \
+    jq \
+    which \
     && yum -y module enable python39 \
     && yum clean all
+
 
 # Upgrade pip and install required Python packages
 RUN python3.9 -m pip install --upgrade pip \

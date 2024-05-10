@@ -33,4 +33,4 @@ RUN pip install /app/linchpin
 
 
 # Set the default command for the container
-CMD ["ansible-playbook"]
+CMD ["bash"]
